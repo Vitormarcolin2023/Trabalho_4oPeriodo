@@ -2,7 +2,6 @@ package dev.uniamerica.carrosapi.repository;
 
 
 import dev.uniamerica.carrosapi.model.Autor;
-import dev.uniamerica.carrosapi.model.Carro;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 

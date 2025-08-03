@@ -1,18 +1,16 @@
 package dev.uniamerica.carrosapi.model;
 
+
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class Carro {
+public class Biblioteca {
+
     private Integer id;
     private String nome;
-    private String marca;
-
+    private String telefone;
 
     public Integer getId() {
         return id;
@@ -30,11 +28,11 @@ public class Carro {
         this.nome = nome;
     }
 
-    public String getMarca() {
-        return marca;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 }

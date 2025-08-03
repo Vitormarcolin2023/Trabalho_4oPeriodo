@@ -1,8 +1,8 @@
 package dev.uniamerica.carrosapi.controller;
 
 
-import dev.uniamerica.carrosapi.model.Carro;
-import dev.uniamerica.carrosapi.service.AutorService;
+import dev.uniamerica.carrosapi.model.Biblioteca;
+import dev.uniamerica.carrosapi.service.BibliotecaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/autores")
-public class AutorController {
+@RequestMapping("/api/biblioteca")
+public class BibliotecaController {
 
-    private final AutorService autorService;
+    private final BibliotecaService bibliotecaService;
 
-    public AutorController(AutorService autorService){
-        this.autorService =autorService;
+    public BibliotecaController(BibliotecaService bibliotecaService){
+        this.bibliotecaService =bibliotecaService;
     }
 
     @GetMapping("/findAll")
-    public ResponseEntity<List<Carro>> findAll() {
+    public ResponseEntity<List<Biblioteca>> findAll() {
         try {
-            var result = autorService.findAll();
+            var result = bibliotecaService.findAll();
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -30,9 +30,9 @@ public class AutorController {
     }
 
     @GetMapping("/findById/{id}")
-    public ResponseEntity<Carro> findById(@PathVariable Integer id) {
+    public ResponseEntity<Biblioteca> findById(@PathVariable Integer id) {
         try {
-            var result = autorService.findById(id);
+            var result = bibliotecaService.findById(id);
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -40,10 +40,10 @@ public class AutorController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Carro> save(
-            @RequestBody Carro carro) {
+    public ResponseEntity<Biblioteca> save(
+            @RequestBody Biblioteca biblioteca) {
         try {
-            var result = autorService.save(carro);
+            var result = bibliotecaService.save(biblioteca);
             return new ResponseEntity<>(result,
                     HttpStatus.CREATED);
         } catch (Exception ex) {
@@ -55,7 +55,7 @@ public class AutorController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         try {
-            autorService.delete(id);
+            bibliotecaService.delete(id);
             return ResponseEntity.noContent().build(); // status 204
         } catch (Exception ex) {
             return ResponseEntity.badRequest().build(); // status 400
@@ -63,10 +63,10 @@ public class AutorController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Carro> update(@PathVariable Integer id,
-                                        @RequestBody Carro autorUpdate) {
+    public ResponseEntity<Biblioteca> update(@PathVariable Integer id,
+                                        @RequestBody Biblioteca bibliotecaUpdate) {
         try {
-            var result = autorService.update(id, autorUpdate);
+            var result = bibliotecaService.update(id, bibliotecaUpdate);
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
