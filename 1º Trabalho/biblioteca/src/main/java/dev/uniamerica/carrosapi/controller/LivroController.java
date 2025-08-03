@@ -1,8 +1,8 @@
 package dev.uniamerica.carrosapi.controller;
 
 
-import dev.uniamerica.carrosapi.model.Editora;
-import dev.uniamerica.carrosapi.service.EditoraService;
+import dev.uniamerica.carrosapi.model.Livro;
+import dev.uniamerica.carrosapi.service.LivroService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/editora")
-public class EditoraController {
+@RequestMapping("/api/livro")
+public class LivroController {
 
-    private final EditoraService editoraService;
+    private final LivroService livroService;
 
-    public EditoraController(EditoraService editoraService){
-        this.editoraService =editoraService;
+    public LivroController(LivroService livroService){
+        this.livroService = livroService;
     }
 
     @GetMapping("/findAll")
-    public ResponseEntity<List<Editora>> findAll() {
+    public ResponseEntity<List<Livro>> findAll() {
         try {
-            var result = editoraService.findAll();
+            var result = livroService.findAll();
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -30,9 +30,9 @@ public class EditoraController {
     }
 
     @GetMapping("/findById/{id}")
-    public ResponseEntity<Editora> findById(@PathVariable Integer id) {
+    public ResponseEntity<Livro> findById(@PathVariable Integer id) {
         try {
-            var result = editoraService.findById(id);
+            var result = livroService.findById(id);
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -40,10 +40,10 @@ public class EditoraController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Editora> save(
-            @RequestBody Editora editora) {
+    public ResponseEntity<Livro> save(
+            @RequestBody Livro livro) {
         try {
-            var result = editoraService.save(editora);
+            var result = livroService.save(livro);
             return new ResponseEntity<>(result,
                     HttpStatus.CREATED);
         } catch (Exception ex) {
@@ -55,7 +55,7 @@ public class EditoraController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         try {
-            editoraService.delete(id);
+            livroService.delete(id);
             return ResponseEntity.noContent().build(); // status 204
         } catch (Exception ex) {
             return ResponseEntity.badRequest().build(); // status 400
@@ -63,10 +63,9 @@ public class EditoraController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Editora> update(@PathVariable Integer id,
-                                             @RequestBody Editora editoraUpdate) {
+    public ResponseEntity<Livro> update(@PathVariable Integer id, @RequestBody Livro livroUpdate) {
         try {
-            var result = editoraService.update(id, editoraUpdate);
+            var result = livroService.update(id, livroUpdate);
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
