@@ -3,12 +3,14 @@ package dev.uniamerica.carrosapi.repository;
 
 import dev.uniamerica.carrosapi.model.Biblioteca;
 import jakarta.annotation.PostConstruct;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+@Repository
 public class BibliotecaRepository {
 
     private final List<Biblioteca> bibliotecas = new ArrayList<>();
